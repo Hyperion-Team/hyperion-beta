@@ -1,7 +1,7 @@
 import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
-import { NEYNAR_ONCHAIN_KIT } from '../../config';
 import { initFrame, passportFrame, qfFrame, qfFrame1, qfFrame2 } from '../../utils/framesMetadata';
+import { NEXT_IS_PROD } from '../../config';
 
 
 const totalQFPages = 3;
@@ -43,7 +43,7 @@ function renderFrameMetadata(state: any, page: number) {
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
 	const body: FrameRequest = await req.json();
-	const { isValid, message } = await getFrameMessage(body, { neynarApiKey: NEYNAR_ONCHAIN_KIT, allowFramegear: true });
+	const { isValid, message } = await getFrameMessage(body, { allowFramegear: !NEXT_IS_PROD });
 	// start in 1
 	const buttonIndex = body.untrustedData.buttonIndex;
 

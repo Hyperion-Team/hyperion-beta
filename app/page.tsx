@@ -11,20 +11,17 @@ const apolloClient = new ApolloClient({
 });
 
 type Props = {
-	params: { id: string }
 	searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export async function generateMetadata(
-	{ params, searchParams }: Props,
-	parent: ResolvingMetadata
+	{ searchParams }: Props,
+	_parent: ResolvingMetadata
 ): Promise<Metadata> {
-	let newState = {};
+	let newState: { projectPath?: string, bannerImg?: string } = {};
 
 	if (searchParams.url !== undefined) {
 		const vars = (searchParams.url as string).split('/');
-		console.log(vars);
-
 		const { data } = await apolloClient.query({
 			query: gql`
 			query {
@@ -42,18 +39,18 @@ export async function generateMetadata(
 
 		newState = {
 			projectPath: searchParams.url as string || '',
-			bannerImg: data.application.metadata.application.project.bannerImg
+			bannerImg: data?.application?.metadata?.application?.project?.bannerImg
 		}
 	}
 
 
 	return {
-		title: 'Cast and Vonate',
+		title: 'Cast and Donate',
 		description: 'Farcaster Frames for GitcoinGrants',
 		openGraph: {
-			title: 'Cast and Vonate',
+			title: 'Cast and Donate',
 			description: 'Farcaster Frames for GitcoinGrants',
-			images: [`${NEXT_PUBLIC_URL}/default.jpg`],
+			images: [newState.bannerImg || `${NEXT_PUBLIC_URL}/default.jpg`],
 		},
 		other: {
 			...getFrameMetadata(
@@ -67,5 +64,5 @@ export async function generateMetadata(
 }
 
 export default function HomePage() {
-	return <div>Cast and Vonate</div>
+	return <div>Cast and Donate</div>
 }

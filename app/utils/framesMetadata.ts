@@ -4,7 +4,7 @@ import { NEXT_PUBLIC_URL } from '../config';
 const initFrame = (state: { projectPath?: string, bannerImg?: string }): FrameMetadataType => ({
     buttons: [
         {
-            label: 'Vonate',
+            label: 'Donate',
             action: "link",
             target: `https://explorer.gitcoin.co/#/round/${state.projectPath || '0'}`
         },
@@ -13,13 +13,7 @@ const initFrame = (state: { projectPath?: string, bannerImg?: string }): FrameMe
         },
         {
             label: 'What is QF?',
-        },
-        {
-            action: 'tx',
-            label: 'Mint',
-            target: `${NEXT_PUBLIC_URL}/api/tx`,
-            postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
-        },
+        }
     ],
     image: {
         src: state.bannerImg ? `https://ipfs.io/ipfs/${state.bannerImg}` : `${NEXT_PUBLIC_URL}/default.jpg`,
