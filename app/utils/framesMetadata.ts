@@ -8,9 +8,9 @@ const initFrame = (state: { projectPath?: string, bannerImg?: string }): FrameMe
             action: "link",
             target: `https://explorer.gitcoin.co/#/round/${state.projectPath || '0'}`
         },
-        {
-            label: 'Passport',
-        },
+        // {
+        //     label: 'Passport',
+        // },
         {
             label: 'What is QF?',
         }
