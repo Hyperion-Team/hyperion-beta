@@ -4,6 +4,7 @@ import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import { Metadata, ResolvingMetadata } from 'next';
 import { NEXT_PUBLIC_URL } from './config';
 import { initFrame } from './utils/framesMetadata';
+import GetURL from "./components/GetURL";
 
 const apolloClient = new ApolloClient({
 	uri: "https://grants-stack-indexer-v2.gitcoin.co/graphql",
@@ -64,5 +65,5 @@ export async function generateMetadata(
 }
 
 export default function HomePage() {
-	return <div>Cast and Donate</div>
+	return <GetURL />
 }

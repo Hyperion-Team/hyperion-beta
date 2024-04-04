@@ -1,12 +1,24 @@
 import { FrameMetadataType } from '@coinbase/onchainkit';
 import { NEXT_PUBLIC_URL } from '../config';
 
+const calculateTarget = (projectPath?: string) => {
+    if (projectPath) {
+        if (projectPath.indexOf('/0x') !== -1) {
+            return `https://explorer-v1.gitcoin.co/#/round/${projectPath}`;
+        } else {
+            return `https://explorer.gitcoin.co/#/round/${projectPath}`;
+        }
+    }
+    return `https://explorer.gitcoin.co`;
+}
+
+
 const initFrame = (state: { projectPath?: string, bannerImg?: string }): FrameMetadataType => ({
     buttons: [
         {
             label: 'Donate',
             action: "link",
-            target: `https://explorer.gitcoin.co/#/round/${state.projectPath || '0'}`
+            target: calculateTarget(state.projectPath)
         },
         // {
         //     label: 'Passport',
