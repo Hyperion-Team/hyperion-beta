@@ -27,13 +27,13 @@ function renderFrameMetadata(state: any, page: number) {
 	switch (page) {
 		case 0:
 			return initFrame(state);
+		// case 20:
+		// 	return passportFrame;
 		case 20:
-			return passportFrame;
-		case 30:
 			return qfFrame;
-		case 31:
+		case 21:
 			return qfFrame1;
-		case 32:
+		case 22:
 			return qfFrame2;
 		default:
 			return initFrame(state);
